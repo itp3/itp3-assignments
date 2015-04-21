@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{exercise}[2015/04/20 ITP3 exercise sheets]
+\ProvidesClass{assignment}[2015/04/20 ITP3 exercise assignments]
 
 \LoadClass[
      a4paper
