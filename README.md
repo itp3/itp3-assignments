@@ -5,8 +5,8 @@ The main file is `assignment.cls` which can be downloaded
 [here](https://raw.githubusercontent.com/sharkdp/itp3-exercises-template/master/assignment.cls)
 in the newest version.
 
-An example for an assignment is provided as `assignment-example.tex`
-with a preview [here](https://github.com/sharkdp/itp3-exercises-template/raw/master/assignment-example.pdf).
+An example for an assignment is provided as `example-assignment.tex`
+with a preview [here](https://github.com/sharkdp/itp3-exercises-template/raw/master/example-assignment.pdf).
 
 ## Usage
 
@@ -56,6 +56,29 @@ Introduction to this exercise.
     \task First sub-task
     \task Second sub-task
   \end{tasks}
+
+\end{exercises}
+```
+
+### Solutions
+Use the `solution` environment to add solutions:
+```tex
+\begin{exercises}
+
+\exercise{Title of exercise one}
+Introduction to this exercise.
+
+  \begin{tasks}
+    \task First sub-task
+    \task Second sub-task
+  \end{tasks}
+
+  \begin{solution}
+    \begin{tasks}
+      \task Solution to first sub-task
+      \task Solution to second sub-task
+    \end{tasks}
+  \end{solution}
 
 \end{exercises}
 ```

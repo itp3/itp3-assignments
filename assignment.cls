@@ -13,6 +13,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{color}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{xspace}
@@ -28,7 +30,7 @@
 
 % Clean layout
 \setlength{\parindent}{0pt}
-\pagestyle{empty}
+\pagestyle{plain}
 
 % Header
 \AtBeginDocument{%
@@ -49,6 +51,34 @@
 \newcommand{\exercise}[1]{\item \textbf{#1}\par}
 \newenvironment{tasks}{\begin{enumerate}[label=\alph*),leftmargin=*]}{\end{enumerate}}
 \newcommand{\task}{\item}
+
+% Solutions
+\mdfdefinestyle{mystylegray}{%
+skipbelow=1.5ex plus0pt minus0pt,
+skipabove=1.5ex plus0pt minus0pt,
+outerlinewidth=1pt,
+linecolor=black,
+innertopmargin=7pt plus 0.0pt minus 0.0pt,
+innerbottommargin=7pt plus 0.0pt minus 0.0pt,
+frametitle={Solution},
+frametitlebelowskip=2pt,
+frametitlerule=false,
+frametitlefont=\sffamily\color{white}\footnotesize,
+frametitlerulewidth=0pt,
+frametitlerulecolor=black,
+frametitlebackgroundcolor=black,
+font=\sffamily\small,
+nobreak=false,
+backgroundcolor=white,
+innerlinewidth=0pt,
+topline=false,
+bottomline=true,
+leftline=true,
+rightline=true
+}
+
+\mdtheorem[style=mystylegray,nobreak=false]{sol}{Solution}
+\newenvironment{solution}{\begin{sol*}}{\end{sol*}}
 
 % Bold vectors
 \renewcommand{\vec}[1]{\mathbf{#1}}
