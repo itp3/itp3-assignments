@@ -15,6 +15,8 @@
 \usepackage{graphicx}
 \usepackage[framemethod=tikz]{mdframed}
 \usepackage{color}
+\usepackage{environ}
+\usepackage{etoolbox}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{xspace}
@@ -27,6 +29,10 @@
     ,pdfborder={0 0 0}
     ,unicode=true
 ]{hyperref}
+
+% Options to control display of solutions
+\DeclareOption{solution}{\toggletrue{solflag}}
+\DeclareOption{nosolution}{\togglefalse{solflag}}
 
 % Clean layout
 \setlength{\parindent}{0pt}
@@ -78,7 +84,16 @@ rightline=true
 }
 
 \mdtheorem[style=mystylegray,nobreak=false]{sol}{Solution}
-\newenvironment{solution}{\begin{sol*}}{\end{sol*}}
+
+\newtoggle{solflag}   % Toggle 'solflag' to control display of solutions
+\togglefalse{solflag} % Default: No solutions
+\ProcessOptions\relax % Execute options after toggle 'solflag' was declared
+
+\iftoggle{solflag}{
+  \NewEnviron{solution}{\begin{sol*}\BODY\end{sol*}}
+}{
+  \NewEnviron{solution}{ }
+}
 
 % Bold vectors
 \renewcommand{\vec}[1]{\mathbf{#1}}

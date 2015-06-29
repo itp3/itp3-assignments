@@ -6,7 +6,7 @@ The main file is `assignment.cls` which can be downloaded
 in the newest version.
 
 An example for an assignment is provided as `example-assignment.tex`
-with a preview [here](https://github.com/sharkdp/itp3-exercises-template/raw/master/example-assignment.pdf).
+with a preview here: [example-assignment.pdf](https://github.com/sharkdp/itp3-exercises-template/raw/master/example-assignment.pdf), [example-solution.pdf](https://github.com/sharkdp/itp3-exercises-template/raw/master/example-solution.pdf).
 
 ## Usage
 
@@ -61,7 +61,7 @@ Introduction to this exercise.
 ```
 
 ### Solutions
-Use the `solution` environment to add solutions:
+Use the `solution` environment to add solutions to your exercises:
 ```tex
 \begin{exercises}
 
@@ -82,6 +82,11 @@ Introduction to this exercise.
 
 \end{exercises}
 ```
+The visibility of the solution boxes can be toggled by the `solution`/`nosolution` class options:
+```tex
+\documentclass[solution]{assignment}
+```
+Alternatively, you can generate both versions from the command line (see `Makefile`).
 
 ### Custom commands
 Several helper commands are provided for Dirac-notation, integrals
