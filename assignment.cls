@@ -52,11 +52,22 @@
     \date{\releaseDate}%
 }
 
+% This is an internal counter to produce unique labels for hyperref
+% see: http://tex.stackexchange.com/a/44954/42128
+\newcounter{myequation}
+\makeatletter
+\@addtoreset{equation}{myequation}
+\makeatother
+
 % Exercises and tasks
 \newenvironment{exercises}{\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*]}{\end{enumerate}}
-\newcommand{\exercise}[1]{\item \textbf{#1}\par}
+\newcommand{\exercise}[1]{\stepcounter{exercise}\stepcounter{myequation}\item \textbf{#1}\par}
 \newenvironment{tasks}{\begin{enumerate}[label=\alph*),leftmargin=*]}{\end{enumerate}}
 \newcommand{\task}{\item}
+
+% Use exercise-specific equation numbers
+\newcounter{exercise}
+\renewcommand{\theequation}{\theexercise.\arabic{equation}}
 
 % Solutions
 \mdfdefinestyle{mystylegray}{%
