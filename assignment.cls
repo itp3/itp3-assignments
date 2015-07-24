@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{assignment}[2015/04/20 ITP3 exercise assignments]
+\ProvidesClass{assignment}[2015/07/24 ITP3 exercise assignments]
 
 \LoadClass[
      a4paper
@@ -13,8 +13,6 @@
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
-\usepackage[framemethod=tikz]{mdframed}
-\usepackage{color}
 \usepackage{environ}
 \usepackage{etoolbox}
 \usepackage{amsmath}
@@ -52,58 +50,65 @@
     \date{\releaseDate}%
 }
 
-% This is an internal counter to produce unique labels for hyperref
-% see: http://tex.stackexchange.com/a/44954/42128
-\newcounter{myequation}
-\makeatletter
-\@addtoreset{equation}{myequation}
-\makeatother
-
-% Exercises and tasks
+% Exercise environment and command
 \newenvironment{exercises}{\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*]}{\end{enumerate}}
-\newcommand{\exercise}[1]{\stepcounter{exercise}\stepcounter{myequation}\item \textbf{#1}\par}
+\newcommand{\exercise}[1]{\item \textbf{#1}\par}
+
+% Task environment and command
 \newenvironment{tasks}{\begin{enumerate}[label=\alph*),leftmargin=*]}{\end{enumerate}}
 \newcommand{\task}{\item}
 
-% Use exercise-specific equation numbers
-\newcounter{exercise}
-\renewcommand{\theequation}{\theexercise.\arabic{equation}}
-
-% Solutions
-\mdfdefinestyle{mystylegray}{%
-skipbelow=1.5ex plus0pt minus0pt,
-skipabove=1.5ex plus0pt minus0pt,
-outerlinewidth=1pt,
-linecolor=black,
-innertopmargin=7pt plus 0.0pt minus 0.0pt,
-innerbottommargin=7pt plus 0.0pt minus 0.0pt,
-frametitle={Solution},
-frametitlebelowskip=2pt,
-frametitlerule=false,
-frametitlefont=\sffamily\color{white}\footnotesize,
-frametitlerulewidth=0pt,
-frametitlerulecolor=black,
-frametitlebackgroundcolor=black,
-font=\sffamily\small,
-nobreak=false,
-backgroundcolor=white,
-innerlinewidth=0pt,
-topline=false,
-bottomline=true,
-leftline=true,
-rightline=true
-}
-
-\mdtheorem[style=mystylegray,nobreak=false]{sol}{Solution}
-
+% Solution toggles
 \newtoggle{solflag}   % Toggle 'solflag' to control display of solutions
 \togglefalse{solflag} % Default: No solutions
 \ProcessOptions\relax % Execute options after toggle 'solflag' was declared
 
 \iftoggle{solflag}{
-  \NewEnviron{solution}{\begin{sol*}\BODY\end{sol*}}
+    % Solution boxes
+    \usepackage[framemethod=tikz]{mdframed}
+    \usepackage{color}
+
+    \mdfdefinestyle{mystylegray}{%
+        skipbelow=1.5ex plus0pt minus0pt,
+        skipabove=1.5ex plus0pt minus0pt,
+        outerlinewidth=1pt,
+        linecolor=black,
+        innertopmargin=7pt plus 0.0pt minus 0.0pt,
+        innerbottommargin=7pt plus 0.0pt minus 0.0pt,
+        frametitle={Solution},
+        frametitlebelowskip=2pt,
+        frametitlerule=false,
+        frametitlefont=\sffamily\color{white}\footnotesize,
+        frametitlerulewidth=0pt,
+        frametitlerulecolor=black,
+        frametitlebackgroundcolor=black,
+        font=\sffamily\small,
+        nobreak=false,
+        backgroundcolor=white,
+        innerlinewidth=0pt,
+        topline=false,
+        bottomline=true,
+        leftline=true,
+        rightline=true
+    }
+
+    \mdtheorem[style=mystylegray,nobreak=false]{sol}{Solution}
+
+    % Seperate equations numbers in solution boxes
+    % see: http://tex.stackexchange.com/a/184659/42128
+    \newcounter{solcounter}
+
+    \makeatletter
+    \NewEnviron{solution}{%
+      \global\chardef\dc@currentequation=\value{equation}%
+      \let\c@equation\c@solcounter%
+      \renewcommand{\theequation}{S\arabic{equation}}%
+      \renewcommand{\theHequation}{S\arabic{equation}}%
+      \begin{sol*}\BODY\end{sol*}%
+    }
+    \makeatother
 }{
-  \NewEnviron{solution}{ }
+    \NewEnviron{solution}{ }
 }
 
 % Bold vectors
