@@ -114,6 +114,12 @@
 % Bold vectors
 \renewcommand{\vec}[1]{\mathbf{#1}}
 
+% This redefines a linebreak '\\' inside the 'align'-environment.
+% It adds \notag to all aligns except the last (only one label
+% for multi-line aligns).
+\makeatletter
+\def\Let@{\def\\{\notag\math@cr}}
+\makeatother
 
 %%% Size-adaptive math: {\textbackslash}leftX \ldots {\textbackslash}rightX
 \newcommand{\bb}[1]{\left(#1\right)}                                        %% parantheses
