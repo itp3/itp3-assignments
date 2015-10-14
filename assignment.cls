@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{assignment}[2015/07/24 ITP3 exercise assignments]
+\ProvidesClass{assignment}[2015/10/14 ITP3 exercise assignments]
 
 \LoadClass[
      a4paper
@@ -21,6 +21,8 @@
 \usepackage{microtype}
 \usepackage{enumitem}
 \usepackage{bm}
+\usepackage{fancyhdr}
+\usepackage[page]{totalcount}
 \usepackage[
      pdfusetitle
     ,colorlinks=false
@@ -32,27 +34,26 @@
 \DeclareOption{solution}{\toggletrue{solflag}}
 \DeclareOption{nosolution}{\togglefalse{solflag}}
 
-% Clean layout
+% Layout, header and footer
 \setlength{\parindent}{0pt}
-\pagestyle{plain}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textsf{\textbf{\lecture}}}
+\rhead{\textsf{\textbf{\sheet}}}
+\cfoot{\small{\textsf{Page \thepage~of \totalpages}}}
 
-% Header
 \AtBeginDocument{%
-    \begin{center}%
-        \fontsize{14pt}{1em}\selectfont%
-        \textbf{\lecture, \sheet} \\%
-        \hrulefill%
-    \end{center}%
-    \textit{\lecturer, \semester, \releaseDate}%
-    \vspace{1cm}%
+    \textsf{\lecturer \hfill \releaseDate}\\%
+    \textsf{Institut für Theoretische Physik III, Universität Stuttgart \hfill \semester}\\%
+    \vspace{7mm}%
     %
     \title{\sheet}%
     \date{\releaseDate}%
 }
 
 % Exercise environment and command
-\newenvironment{exercises}{\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*]}{\end{enumerate}}
-\newcommand{\exercise}[1]{\item \textbf{#1}\par}
+\newenvironment{exercises}{\begin{enumerate}[label=\textbf{Exercise \arabic*:},leftmargin=0pt,itemindent=5.48em,font=\sffamily,itemsep=8mm]}{\end{enumerate}}
+\newcommand{\exercise}[1]{\item \textsf{\textbf{#1}}\par}
 
 % Task environment and command
 \newenvironment{tasks}{\begin{enumerate}[label=\alph*),leftmargin=*]}{\end{enumerate}}
