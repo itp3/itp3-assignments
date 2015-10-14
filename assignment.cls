@@ -111,6 +111,11 @@
     \NewEnviron{solution}{ }
 }
 
+% These commands can be used to selectively add things to the nosolution/solution versions:
+
+\newcommand{\ifsolution}[1]{\iftoggle{solflag}{#1}}
+\newcommand{\ifnosolution}[1]{\nottoggle{solflag}{#1}}
+
 % Bold vectors
 \renewcommand{\vec}[1]{\mathbf{#1}}
 

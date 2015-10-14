@@ -88,6 +88,13 @@ The visibility of the solution boxes can be toggled by the `solution`/`nosolutio
 ```
 Alternatively, you can generate both versions from the command line (see `Makefile`).
 
+### Selective commands
+Sometimes you want to add a detail (like a page break) to just one of the two versions (`solution` or `nosolution`). In this case, you can use the commands
+```tex
+\ifsolution{This will only appear in the solution version}
+\ifnosolution{This will only appear in the version without the solutions}
+```
+
 ### Custom commands
 Several helper commands are provided for Dirac-notation, integrals
 and many other things. An overview of all commands can be found here:
