@@ -2,11 +2,11 @@
 
 This is a simple LaTeX class for assignments and solutions.
 The main file is `assignment.cls` which can be downloaded
-[here](https://raw.githubusercontent.com/sharkdp/itp3-exercises-template/master/assignment.cls)
+[here](https://raw.githubusercontent.com/itp3/itp3-exercises-template/master/assignment.cls)
 in the newest version.
 
 An example for an assignment is provided as `example-assignment.tex`
-with a preview here: [example-assignment.pdf](https://github.com/sharkdp/itp3-exercises-template/raw/master/example-assignment.pdf), [example-solution.pdf](https://github.com/sharkdp/itp3-exercises-template/raw/master/example-solution.pdf).
+with a preview here: [example-assignment.pdf](https://github.com/itp3/itp3-exercises-template/raw/master/example-assignment.pdf), [example-solution.pdf](https://github.com/itp3/itp3-exercises-template/raw/master/example-solution.pdf).
 
 ## Usage
 
